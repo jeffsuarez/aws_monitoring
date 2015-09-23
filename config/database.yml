@@ -1,0 +1,13 @@
+development: &default
+  adapter: postgresql
+  database: aws_monitor
+  pool: 25
+  timeout: 5000
+
+test: &test
+  <<: *default
+  database: aws_monitor_test
+  min_messages: warning
+
+cucumber:
+  <<: *test
