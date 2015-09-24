@@ -1,0 +1,33 @@
+//************************************************************************//
+// Bourbon Neat grid settings
+//************************************************************************//
+
+@import "neat-helpers"; // for media queries, eventually
+
+$border-box-sizing: false;
+
+// Visual grid
+// $visual-grid: true;
+$visual-grid-index: front;
+
+// 12 Column Grid @ 1000px
+$column: 60px;  // Column Width
+$gutter: 30px;  // Gutter Width
+$grid-columns: 14;
+$max-width: 1200px;
+
+// Bourbon
+$gw-column: $column;
+$gw-gutter: $gutter;
+
+// Grid Width Variables
+$nav-width:          2;
+$content-width:      12;
+$form-label-width:   3.5 of 12;
+$form-field-width:   grid-width(7);
+$full-sidebar-width: grid-width(3) + $gutter + 10px;
+
+// Breakpoints
+$tablet-landscape: new-breakpoint(max-width 1090px 12);
+$small-landscape:  new-breakpoint(max-width 480px 6);
+$short-screen:    new-breakpoint(max-height 700px);

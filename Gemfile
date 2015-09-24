@@ -3,10 +3,13 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 
 gem 'aws-sdk'
+gem 'bourbon'
 gem 'devise'
 gem 'jquery-rails'
+gem 'neat'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
 
 group :assets do
   gem 'coffee-rails', '~> 4.1.0'

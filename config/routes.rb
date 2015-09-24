@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  resources :sessions, only: [:new, :create]
+
+  match 'logout', to: "sessions#destroy", via: "delete", defaults: { id: nil }
 
   root 'dashboard#show'
 end

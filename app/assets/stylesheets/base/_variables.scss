@@ -1,0 +1,42 @@
+//************************************************************************//
+// Variables Go Here
+//************************************************************************//
+
+$base-background-color:       white;  // Darker blue
+$base-background-color-alt:   #F9FAFB;  // Lighter blue
+$base-background-color-alt-1: #F0F2F5;  // Dark Blue
+
+$base-border-color:       #CBD2DB; // dark
+$base-border-color-alt:   #E5E9ED; // light
+$base-border-color-alt-1: #D2D8E0; // mid
+$base-border-color-dark:  darken(#353A48, 10%);
+$base-border-color-content: darken($base-border-color, 15%);
+$profile-card-border: darken($base-border-color, 10%);
+
+$base-color:           #222;
+$base-color-alt:       #474D5D; // Dark Blue
+$base-color-alt-1:     #656C7E; // Light Blue
+$base-color-small:     lighten($base-color-alt-1, 10%);
+$missing-data-color:   lighten($base-color-alt-1, 10%);
+
+$base-color-headline:   #0A3E66; // Headline blue (less purple)
+$base-color-accent:     #230D9C; // Purple
+$base-color-accent-alt: tint($base-color-accent, 35%);
+$base-color-positive:   #24A07E;
+
+$base-font-size:             13px;
+$base-font-size-small-alt-1: $base-font-size - 3px;
+$base-font-size-small-alt:   $base-font-size - 2px;
+$base-font-size-small:       $base-font-size - 1px;
+$base-font-size:             $base-font-size;
+$base-font-size-alt:         $base-font-size + 1px;
+$base-font-size-alt-1:       20px;
+$base-font-size-alt-2:       23px;
+
+$base-font-family:      $lucida-grande;
+
+// Link Colors
+$base-link-color: desaturate(hsl(209, 53%, 48%), 3%);
+$breadcrumbs-color-bottom: #F4F5F7;
+$breadcrumbs-color-top: #fff;
+$button-greyscale: $base-background-color-alt-1;

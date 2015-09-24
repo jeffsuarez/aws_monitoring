@@ -1,0 +1,71 @@
+//************************************************************************//
+// Typekit Fonts Mixin
+//************************************************************************//
+
+@mixin font($weight: normal, $style: normal, $font: 1) {
+  @if $font == 1 {
+    font-family: $base-font-family;
+  }
+  @if $font == 2 {
+    font-family: $base-font-family-alt
+  }
+
+  @if $weight == 400 {
+    font-weight: normal;
+  }
+  @if ($weight == bold) and ($font == 1) {
+    // Covert bold to semibold
+    font-weight: 600;
+  }
+  @else {
+    font-weight: $weight;
+  }
+
+  font-style:  $style;
+}
+
+@mixin inline-separator($color: $base-border-color-alt) {
+  position: relative;
+
+  span {
+    background: #fff;
+    padding-right: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &:after {
+    border-top: 1px solid $base-border-color-alt;
+    content: "";
+    @include position(absolute, 50% 0px 0 0px);
+    z-index: 0;
+  }
+}
+
+@mixin hover-text-decoration($decoration: none) {
+  &:hover {
+    text-decoration: $decoration;
+  }
+}
+
+@mixin background-color-rgba($list...) {
+  @if length($list) == 4 {
+    $color:   rgb(nth($list, 1), nth($list, 2), nth($list, 3));
+    $opacity: nth($list, 4);
+    @include tint-shade($color, $opacity);
+    background-color: rgba($color, $opacity);
+  } @else {
+    $color:   nth($list, 1);
+    $opacity: nth($list, 2);
+    @include tint-shade($color, $opacity);
+    background-color: rgba($color, $opacity);
+  }
+}
+
+@mixin tint-shade($color, $opacity) {
+  @if lightness($color) > 50% {
+    background-color: tint($color, percentage($opacity));
+  } @else {
+    background-color: shade($color, percentage($opacity));
+  }
+}
