@@ -44,6 +44,26 @@ label.required:after {
   content: "*";
 }
 
+div.error {
+  padding: 10px;
+  border: 1px solid $status-negative;
+  background-color: white;
+  border-radius: 2px;
+  margin-bottom: 25px;
+
+  & > ul {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+
+    li {
+      color: $status-negative;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+}
+
 span.error {
   $background-color: $status-negative-background;
   $height: 24px;
