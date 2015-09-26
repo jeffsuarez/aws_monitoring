@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 9]><html class="ie oldie"><![endif]-->
+<!--[if gt IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><html><![endif]-->
 <head>
-  <title>AWS Monitor</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
+  <%= render "shared/head" %>
 </head>
-<body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<body class="<%= body_class %>">
+  <div class="super-wrapper">
+    <%= render 'shared/flashes' %>
+    <%= render 'shared/header' %>
 
-<%= yield %>
+    <div class="width-wrapper clearfix">
+      <div class="content-wrapper">
+        <section class="content">
+          <%= yield %>
+        </section>
+        <footer>
+          <%= yield :footer %>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'shared/footer' %>
 
 </body>
 </html>

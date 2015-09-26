@@ -69,3 +69,107 @@
     background-color: shade($color, percentage($opacity));
   }
 }
+
+@mixin app-button($bg-color: $base-button-action, $height: 30px, $hover: true) {
+  $color: white;
+
+  @if lightness($bg-color) > 70% {
+    $color: $base-color-alt;
+  }
+
+  @include font(600);
+  @include box-sizing(border-box);
+  background-color: $bg-color;
+  border-radius: 3px;
+  border: 1px solid darken($bg-color, 10%);
+  box-shadow: inset 0 1px 0 lighten($bg-color, 20%);
+  color: $color !important;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  height: $height;
+  line-height: $height;
+  padding: 0 $height/2;
+  position: relative;
+  text-align: center;
+  -webkit-appearance: none;
+  text-rendering: optimizeLegibility;
+
+  .icon {
+    color: inherit;
+  }
+
+  @if $hover == true {
+    &:hover {
+      @include linear-gradient(lighten($bg-color, 10%), $bg-color);
+      background-color: lighten($bg-color, 10%);
+      border: 1px solid darken($bg-color, 30%);
+      box-shadow: inset 0 1px 0 lighten($bg-color, 30%), 0 1px 2px rgba(black, 0.1);
+      text-decoration: none;
+      z-index: 1;
+    }
+
+    &:active {
+      box-shadow: inset 0 0 8px darken($bg-color, 15%);
+      background-color: darken($bg-color, 10%);
+    }
+
+  } @else if $hover == false {
+    box-shadow: none !important;
+    cursor: default;
+
+    &:hover {
+      background-image: none;
+      background-color: $bg-color;
+    }
+  }
+}
+
+@mixin dropdown-toggle-box($foreground, $background, $size: 16px) {
+  background-color: $background;
+  border-radius: 3px;
+  display: block;
+  height: $size;
+  margin: 14px -1px 0 10px;
+  position: relative;
+  width: $size;
+
+  .arrow {
+    @extend .arrow-tiny;
+    top: 50%;
+    left: 50%;
+    margin: -2px 0 0 -4px;
+    border-top-color: $foreground;
+  }
+
+  &:hover {
+    background-color: darken($background, 10%);
+  }
+}
+
+@mixin add-tooltip($color, $border: null, $size: 10px, $position: 50%) {
+  position: relative;
+
+  &::before {
+    @if $border {
+      border: 1px solid $border;
+      border-bottom: 0;
+      border-right: 0;
+    }
+
+    @include transform(rotate(45deg));
+    background-color: $color;
+    content: "";
+    height: $size;
+    left: $position;
+    margin-left: -($size / 2);
+    position: absolute;
+    top: -($size / 2);
+    width: $size;
+  }
+}
+
+@mixin dark-background {
+  background-color: $base-color-alt;
+  background-image: image_url("textures/linen_300x300.png");
+}

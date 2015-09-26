@@ -1,0 +1,125 @@
+//************************************************************************//
+// Mobile
+//************************************************************************//
+
+@include media-iphone {
+  $margin: 5%;
+
+  #flash_wrapper {
+    position: static;
+
+    .flash-container {
+      margin-left: $margin;
+    }
+  }
+
+  .sessions-layout {
+    margin: $margin;
+    max-width: 90%;
+  }
+
+  .sessions-wrapper {
+    margin: 0 0 60px 0 !important;
+    max-width: 100%;
+
+    .button.linkedin {
+      margin-top: 0;
+    }
+  }
+
+  header .right {
+    display: none;
+  }
+
+  .instructions .icon {
+    display: none;
+  }
+
+  .inner-wrapper .column {
+    max-width: 100%;
+  }
+
+  .column.left {
+    @include fill-parent;
+    border-bottom: 1px dashed $base-border-color-alt-1;
+    border-right: none;
+    padding-bottom: 40px;
+  }
+
+  .column.right {
+    @include fill-parent;
+    padding-top: 30px;
+  }
+
+  .check-field {
+    input[type="checkbox"] {
+      top: -16px;
+    }
+
+    label {
+      width: 85%;
+    }
+  }
+
+  .linkedin-to-fdn {
+    display: none;
+  }
+
+  .or {
+    top: 328px;
+  }
+
+  .sign-up {
+    .invite-images {
+      @include clearfix;
+      float: none !important;
+      margin: 0 auto 10px;
+      width: 105px;
+    }
+
+    .linkedin-to-fdn {
+      top: 25px
+    }
+
+    .or {
+      top: 537px;
+    }
+  }
+
+  #termsOfService {
+    $size: 100%;
+    @include position(fixed, 0px 0 0px 0px);
+    border-radius: 0;
+    height: $size;
+    margin: 0;
+    max-height: 100%;
+    min-height: $size;
+    min-width: $size;
+    padding: 0;
+    width: $size;
+
+    .inner-wrapper {
+      overflow: scroll;
+      padding: 0;
+      width: 100%;
+
+      article {
+        @include box-sizing(border-box);
+        border-radius: 0;
+        border: 0;
+        box-shadow: none;
+        height: auto;
+        padding: 10px;
+        width: 100%;
+      }
+    }
+
+    .buttons {
+      @include box-sizing(border-box);
+      border-radius: 0;
+      bottom: 0;
+      position: fixed;
+      width: 100%;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_filter :verify_aws_credentials
+  layout 'session'
 
   DEFAULT_REGION = 'us-east-1'
 

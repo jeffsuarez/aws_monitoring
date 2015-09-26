@@ -1,0 +1,265 @@
+//************************************************************************//
+// Custom Form Design
+//************************************************************************//
+
+.form,
+.tabbed-module.form {
+
+  div {
+    @include clearfix;
+  }
+
+  div.input,
+  .checkbox-input {
+    margin-bottom: 0;
+    padding: 0.8em 0;
+
+    label {
+      margin-top: 9px;
+
+      &.text {
+        margin-top: 7px;
+      }
+
+      &.country,
+      &.state,
+      &.file,
+      &.image_preview
+      &.grouped_select,
+      &.select,
+      &.date {
+        margin-top: 0;
+      }
+
+      &.date {
+        margin-bottom: 40px;
+      }
+
+      &.datetime {
+        margin-bottom: 100px;
+      }
+    }
+  }
+
+  input {
+    &[data-type="year"] {
+      width: 50px;
+    }
+
+    &.file, &.image_preview {
+      float: left;
+    }
+  }
+
+  div.input.boolean {
+    label {
+      margin-top: 0;
+      text-align: left;
+      width: 100%;
+    }
+  }
+
+  div.input select {
+    min-width: 300px;
+  }
+
+  label {
+    margin-right: $gutter;
+  }
+
+  label.control-label,
+  .expandingText {
+    @include span-columns($form-label-width);
+    text-align: right;
+  }
+
+  h4,
+  div.input.boolean,
+  span.hint,
+  div.check_boxes label.checkbox,
+  .expandingText {
+    margin-left: $form-label-width + $gw-gutter;
+  }
+
+  label.radio {
+    display: inline-block;
+  }
+
+  h4,
+  div.input.boolean,
+  span.hint,
+  div.check_boxes label.checkbox {
+    @include shift(3.5);
+  }
+
+  span.error {
+    @include shift(4);
+  }
+
+  div.input.boolean.checkbox-label {
+    margin-left: 29%;
+    padding-left: 1%;
+
+    label {
+      @include font(normal);
+    }
+  }
+
+  div.input.boolean .hint {
+    margin-left: 0px;
+  }
+
+  span.firm-name {
+    padding-top: 10px;
+  }
+
+  .in-public-profile {
+    label {
+      position: relative;
+
+      &:after {
+        @include position(absolute, 0px -25px 0 0);
+        background-image: image_url("icons/public-profile.png");
+        background-position: left center;
+        background-repeat: no-repeat;
+        content: "";
+        height: 18px;
+        width: 18px;
+      }
+    }
+  }
+
+  textarea {
+    width: 65%;
+
+    &.big-textarea {
+      height: 200px;
+      width: 450px;
+    }
+  }
+
+  .expandingText {
+    width: 65%;
+
+    textarea {
+      width: 100%;
+    }
+  }
+
+  .form-group-header {
+    @include background-image(linear-gradient(to bottom, white, $base-background-color-alt));
+    border-bottom: 1px solid $base-border-color-alt;
+    margin: $gutter 0;
+    padding: 10px $gutter;
+
+    span {
+      @include font(normal);
+      color: $base-color-alt-1;
+    }
+  }
+}
+
+// Upload preview
+//************************************************************************//
+
+.upload-notification {
+  padding-left: 10px;
+}
+
+div.image_preview {
+  position: relative;
+
+  input.image_preview {
+    @include span-columns(7.3 of 12);
+
+    @include media($tablet-landscape) {
+      margin-right: 0;
+    }
+  }
+
+  .hint {
+    clear: none;
+  }
+
+  .error::before {
+    display: none;
+  }
+}
+
+
+.form-entity {
+  border-top: 1px solid $base-border-color-alt;
+  margin-bottom: $gutter;
+  padding-top: $gutter;
+  position: relative;
+
+  label {
+    margin-top: 7px;
+  }
+
+  .form-entity-remove {
+    @include position(absolute, $gutter $gutter 0 0);
+  }
+
+  + .form-entity,
+  + .add-form-entity {
+    border: 0;
+    padding-top: 0;
+
+    .form-entity-remove {
+      top: 0px;
+    }
+  }
+}
+
+.form-group-header + div .form-entity:first-child {
+  border: 0;
+  padding-top: 0;
+
+  .form-entity-remove {
+    top: 0px;
+  }
+}
+
+
+//************************************************************************//
+// Alert
+//************************************************************************//
+
+div.hidden-alert {
+  @extend .alert;
+
+  p {
+    line-height: 30px;
+  }
+
+  a.button {
+    float: right;
+    margin-right: -10px;
+  }
+}
+
+//************************************************************************//
+// Button Wrapper
+//************************************************************************//
+.button-wrapper {
+  @extend .action-box;
+  border-color: $base-border-color !important;
+  margin-bottom: 0;
+
+  .button,
+  input[type="submit"] {
+    height: 35px;
+    line-height: 35px;
+    margin-bottom: 0;
+    padding: 0 20px;
+  }
+
+  input[type="submit"] {
+    float: right;
+  }
+
+  .cancel {
+    float: left;
+  }
+}

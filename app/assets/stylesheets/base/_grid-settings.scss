@@ -21,8 +21,8 @@ $gw-column: $column;
 $gw-gutter: $gutter;
 
 // Grid Width Variables
-$nav-width:          2;
-$content-width:      12;
+$nav-width:          0;
+$content-width:      14;
 $form-label-width:   3.5 of 12;
 $form-field-width:   grid-width(7);
 $full-sidebar-width: grid-width(3) + $gutter + 10px;

@@ -32,7 +32,6 @@ $base-font-size:             $base-font-size;
 $base-font-size-alt:         $base-font-size + 1px;
 $base-font-size-alt-1:       20px;
 $base-font-size-alt-2:       23px;
-
 $base-font-family:      $lucida-grande;
 
 // Link Colors
@@ -40,3 +39,39 @@ $base-link-color: desaturate(hsl(209, 53%, 48%), 3%);
 $breadcrumbs-color-bottom: #F4F5F7;
 $breadcrumbs-color-top: #fff;
 $button-greyscale: $base-background-color-alt-1;
+
+// Forms
+$form-border-color:       $base-border-color;
+$form-border-color-hover: $base-border-color;
+$form-border-color-focus: #56B4EF; //blue default
+$form-border-radius:      3px;
+$form-box-shadow-focus:   darken($form-border-color-focus, 5%);
+$form-font-size:          $base-font-size;
+
+// Height
+$flash-height: 60px;
+$content-min-height: 900px;
+$header-height: 0px;
+
+// Alert Colors
+// Red
+$status-negative:            #AA0000;
+$status-negative-background: #EECCCC;
+$status-negative-color:      $status-negative;
+
+// Yellow
+$status-neutral:             #FFD324;
+$status-neutral-background:  #F9F1D6;
+$status-neutral-color:       #8C5300;
+
+// Green
+$status-positive:            #529214;
+$status-positive-background: #E6EFC2;
+$status-positive-color:      $status-positive;
+
+// Button Colors
+$base-button: $base-background-color-alt;     // Grey
+$base-button-action: #3D7CB8;                 // Blue
+$base-button-action-disabled:  white;
+$base-button-positive: #4F9E5F;               // Green
+$base-button-negative: #AA4444;

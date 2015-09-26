@@ -1,0 +1,83 @@
+//************************************************************************//
+// Shared LAYOUT styles
+//************************************************************************//
+
+* {
+  @include box-sizing(border-box);
+}
+
+.super-wrapper {
+  background-color: $base-background-color;
+  background-image: image_url("textures/noise-alpha.png");
+  padding-bottom: $gutter;
+}
+
+.width-wrapper {
+  @include outer-container;
+  position: relative;
+
+  @include media($tablet-landscape) {
+    @include pad(10px);
+  }
+}
+
+.persistent-flash ~ .width-wrapper {
+  padding-top: $flash-height;
+}
+
+.left {
+  float: left !important;
+}
+
+.right {
+  float: right !important;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+// Content wrapper
+//************************************************************************//
+.content-wrapper {
+  @include clearfix;
+  @include transition(margin 0.2s);
+  @include pad($gutter);
+  @include shift($nav-width);
+  @include span-columns($content-width);
+  background: white;
+  border-radius: 8px;
+  border: 1px solid $base-border-color-content;
+  min-height: $content-min-height;
+  overflow: hidden;
+  position: relative;
+  margin-left: 20px;
+  width: calc(100% - 163px);
+
+  @include media($tablet-landscape) {
+    @include fill-parent;
+    @include shift(0);
+    @include transition(all, 0.1s);
+  }
+}
+
+.content-wrapper,
+.primary-nav {
+  margin-top: $header-height + 20px;
+
+  @include media($tablet-landscape) {
+    margin-top: 50px;
+  }
+}
+
+.conversations,
+.notes {
+  .content-wrapper {
+    @include span-columns(12);
+    @include pad(0);
+
+    @include media($tablet-landscape) {
+      @include fill-parent;
+    }
+  }
+}

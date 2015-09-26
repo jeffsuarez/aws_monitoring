@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><%= page_title %></title>
+  <%= stylesheet_link_tag "sessions" %>
+
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <%= favicon_link_tag 'touch-icon-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '144x144' %>
+  <meta name="apple-mobile-web-app-title" content="AWS Monitor">
+
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <%= javascript_include_tag 'application' %>
+</head>
+<body class="<%= body_class %>">
+  <%= render 'shared/flashes' %>
+  <div class="wrapper sessions-layout">
+    <%= yield %>
+  </div>
+</body>
+</html>

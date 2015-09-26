@@ -1,0 +1,14 @@
+<div id="flash_wrapper" class="flash-wrapper">
+  <% flash.each do |key, value| -%>
+    <div class="flash_message <%= key %>">
+      <div class="flash-container">
+        <p><%=h value %></p>
+      </div>
+      <a data-dismiss="flash" href="#">
+        <span class="icon dismiss-flash"><%= Icons::CLOSE_SQUARE %></span> 
+      </a>
+    </div>
+  <% end -%>
+</div>
+
+<%= yield :persistent_flashes %>
