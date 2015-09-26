@@ -11,7 +11,7 @@ class EC2Client
       client.describe_instances(dry_run: true)
     rescue Aws::EC2::Errors::DryRunOperation
       return true
-    rescue
+    rescue => e
       return false
     end
     return false
