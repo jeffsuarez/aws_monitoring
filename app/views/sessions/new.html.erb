@@ -1,4 +1,8 @@
-<%= simple_form_for :session, :url => sessions_path do |f| %>
+<% if @session.errors.messages[:base] %>
+  <%= render 'shared/error_messages', messages: @session.errors.messages[:base] %>
+<% end %>
+
+<%= simple_form_for @session, :url => sessions_path do |f| %>
   <%= f.input :aws_access_key_id %>
   <%= f.input :aws_secret_key %>
   <%= f.submit 'Validate Credentials' %>

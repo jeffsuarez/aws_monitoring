@@ -17,8 +17,8 @@ group :assets do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-webkit', '1.1.1'
+  gem 'capybara', '~> 2.5.0'
+  gem 'capybara-webkit', '~> 1.7.1'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner', require: false
   gem 'shoulda-matchers'

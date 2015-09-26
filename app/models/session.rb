@@ -1,15 +1,19 @@
 class Session
   include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
-  attr_accessor :aws_access_key_id, :aws_secret_key
+  attr_accessor :aws_access_key_id, :aws_secret_key, :region
 
   validates_length_of :aws_access_key_id, minimum: 16, maximum: 32
   validates_presence_of :aws_secret_key
+  validates_with EC2PermissionsValidator, client: :ec2_client
 
-  def initialize(params = {})
-    @aws_access_key_id = params[:aws_access_key_id]
-    @aws_secret_key = params[:aws_secret_key]
-    @region = params[:region]
+
+  def initialize(attributes = {})
+    attributes.each do |name, value|
+      send("#{name}=", value)
+    end
   end
 
   def to_param
@@ -17,26 +21,18 @@ class Session
   end
 
   def valid?
-    super && can_describe_instances?
+    super && ec2_client.can_describe_instances?
+  end
+
+  def persisted?
+    false
   end
 
   def ec2_client
-    @ec2_client ||= Aws::EC2::Client.new(
-      region: @region,
-      credentials: Aws::Credentials.new(@aws_access_key_id, @aws_secret_key)
+    @ec2_client ||= EC2Client.new(
+      aws_access_key_id: @aws_access_key_id,
+      aws_secret_key: @aws_secret_key,
+      region: @region
     )
-  end
-
-  private
-
-  def can_describe_instances?
-    begin
-      ec2_client.describe_instances(dry_run: true)
-    rescue Aws::EC2::Errors::DryRunOperation
-      return true
-    rescue
-      return false
-    end
-    return false
   end
 end
