@@ -1,0 +1,44 @@
+.row {
+  margin: 0 0 20px 0;
+  padding: 10px;
+  border: 1px solid #D9DEE4;
+  @include span-columns(12 of 12);
+}
+
+.tile_count {
+  display: inline-block;
+
+  .tile_stats_count {
+    border-left: 0 solid $base-color-alt;
+    padding: 0;
+  }
+
+  div:first-child .left {
+    border: 0;
+  }
+}
+
+.tile_stats_count {
+  @include span-columns(4 of 12);
+
+  .stat {
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    span {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .count {
+    font-size: 30px;
+    line-height: 47px;
+    font-weight: 600;
+    small {
+      font-size: 20px;
+      line-height: 20px;
+      font-weight: 600;
+    }
+  }
+}

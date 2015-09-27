@@ -31,9 +31,14 @@ class SessionsController < ApplicationController
   def persist_session
     session[:aws_access_key_id] = @session.aws_access_key_id
     session[:aws_secret_key] = @session.aws_secret_key
+    session[:s3_billing_bucket] = @session.s3_billing_bucket
   end
 
   def session_params
-    params.require(:session).permit(:aws_access_key_id, :aws_secret_key).merge(region: DEFAULT_REGION)
+    params.require(:session).permit(
+      :aws_access_key_id,
+      :aws_secret_key,
+      :s3_billing_bucket).
+      merge(region: DEFAULT_REGION)
   end
 end

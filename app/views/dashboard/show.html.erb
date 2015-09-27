@@ -1,3 +1,30 @@
-<%= link_to 'Logout', logout_path, method: :delete -%>
 
-woop
+<div class="row tile_count">
+  <div class="tile_stats_count">
+    <div class="stat">
+      <span class="count_top"><i class="fa fa-user"></i> Spend this Month</span>
+      <div class="count"><%= @bill_summary.current_month_spend -%></div>
+      <span class="count_bottom">Through September 23rd.</span>
+    </div>
+  </div>
+
+  <div class="tile_stats_count">
+    <div class="stat">
+      <span class="count_top"><i class="fa fa-user"></i> Month Estimate</span>
+      <div class="count"><%= @bill_summary.current_month_estimate -%></div>
+      <span class="count_bottom">Through September 23rd.</span>
+    </div>
+  </div>
+
+  <div class="tile_stats_count">
+    <div class="stat">
+      <span class="count_top"><i class="fa fa-user"></i> </span>
+      <div class="count"><%= @bill_summary.current_month_spend -%></div>
+      <span class="count_bottom">Through September 23rd.</span>
+    </div>
+  </div>
+</div>
+
+<div class="row tile_count">
+  <label>Reserved Instance Coverage</label>
+</div>

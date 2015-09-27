@@ -7,6 +7,7 @@
     <%= simple_form_for @session, :url => sessions_path do |f| %>
       <%= f.input :aws_access_key_id %>
       <%= f.input :aws_secret_key %>
+      <%= f.input :s3_billing_bucket %>
       <%= f.submit 'Validate Credentials' %>
     <% end %>
   </div>

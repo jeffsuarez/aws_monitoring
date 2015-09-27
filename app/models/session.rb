@@ -3,7 +3,7 @@ class Session
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :aws_access_key_id, :aws_secret_key, :region
+  attr_accessor :aws_access_key_id, :aws_secret_key, :region, :s3_billing_bucket
 
   validates_length_of :aws_access_key_id, minimum: 16, maximum: 32
   validates_presence_of :aws_secret_key
@@ -29,10 +29,18 @@ class Session
   end
 
   def ec2_client
-    @ec2_client ||= EC2Client.new(
+    @ec2_client ||= EC2Client.new(credentials: credentials, region: region)
+  end
+
+  def credentials
+    @credentials ||= Aws::Credentials.new(aws_access_key_id, aws_secret_key)
+  end
+
+  def billing_summary
+    @billing_summary = BillingSummary.new(
       aws_access_key_id: @aws_access_key_id,
       aws_secret_key: @aws_secret_key,
-      region: @region
+
     )
   end
 end

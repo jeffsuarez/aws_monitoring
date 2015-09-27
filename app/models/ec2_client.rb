@@ -1,9 +1,7 @@
 class EC2Client
   def initialize(attributes = {})
     @region = attributes[:region]
-    @aws_access_key_id = attributes[:aws_access_key_id]
-    @aws_secret_key = attributes[:aws_secret_key]
-    @credentials = Aws::Credentials.new(@aws_access_key_id, @aws_secret_key)
+    @credentials = attributes[:credentials]
   end
 
   def can_describe_instances?
@@ -22,7 +20,7 @@ class EC2Client
   def client
     @ec2_client ||= Aws::EC2::Client.new(
       region: @region,
-      credentials: Aws::Credentials.new(@aws_access_key_id, @aws_secret_key)
+      credentials: @credentials
     )
   end
 end

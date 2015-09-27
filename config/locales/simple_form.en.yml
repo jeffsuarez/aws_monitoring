@@ -12,3 +12,4 @@ en:
         new:
           aws_access_key_id: "AWS Access Key"
           aws_secret_key: "AWS Secret Key"
+          s3_billing_bucket: "S3 Billing Bucket"

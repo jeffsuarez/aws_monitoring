@@ -4,12 +4,15 @@ class ApplicationController < ActionController::Base
 
   helper_method :body_class
 
-
   private
 
   def verify_aws_credentials
-    unless session[:aws_access_key_id] && session[:aws_secret_key]
-      redirect_to new_session_path
+    if session[:aws_access_key_id].present? && session[:aws_secret_key].present?
+      @session = Session.new(
+        aws_access_key_id: session[:aws_access_key_id],
+        aws_secret_key: session[:aws_secret_key],
+        s3_billing_bucket: session[:s3_billing_bucket]
+      )
     end
   end
 
