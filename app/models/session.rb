@@ -21,26 +21,59 @@ class Session
   end
 
   def valid?
-    super && ec2_client.can_describe_instances?
+    super && can_describe_instances?
   end
 
   def persisted?
     false
   end
 
+  def account_number
+    @account_number ||= begin
+      arn = iam_client.get_user().user.arn
+      arn.split(":user").first.split("iam::").last
+    rescue
+      nil
+    end
+  end
+
+  def bill_summary
+    @bill_summary ||= BillSummary.new(
+      s3_client: s3_client,
+      s3_billing_bucket: s3_billing_bucket
+      account_number: account_number
+    )
+  end
+
+  def can_describe_instances?
+    begin
+      ec2_client.describe_instances(dry_run: true)
+    rescue Aws::EC2::Errors::DryRunOperation
+      return true
+    rescue => e
+      return false
+    end
+    return false
+  end
+
+
   def ec2_client
-    @ec2_client ||= EC2Client.new(credentials: credentials, region: region)
+    @ec2_client ||= Aws::EC2::Client.new(config_params)
+  end
+
+  def s3_client
+    @s3_client ||= Aws::S3::Client.new(config_params)
+  end
+
+  def iam_client
+    @iam_client ||= Aws::IAM::Client.new(config_params)
   end
 
   def credentials
     @credentials ||= Aws::Credentials.new(aws_access_key_id, aws_secret_key)
   end
 
-  def billing_summary
-    @billing_summary = BillingSummary.new(
-      aws_access_key_id: @aws_access_key_id,
-      aws_secret_key: @aws_secret_key,
-
-    )
+  def config_params
+    { credentials: credentials, region: region }
   end
 end
