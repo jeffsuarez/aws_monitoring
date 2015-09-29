@@ -11,6 +11,7 @@ gem 'neat'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
+gem 'smarter_csv'
 
 group :assets do
   gem 'coffee-rails', '~> 4.1.0'

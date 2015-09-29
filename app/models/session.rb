@@ -40,7 +40,7 @@ class Session
   def bill_summary
     @bill_summary ||= BillSummary.new(
       s3_client: s3_client,
-      s3_billing_bucket: s3_billing_bucket
+      s3_billing_bucket: s3_billing_bucket,
       account_number: account_number
     )
   end
