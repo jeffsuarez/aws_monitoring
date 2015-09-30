@@ -1,6 +1,6 @@
 class EC2Auditor
   def initialize
-    @ec2_client = attributes[:s3_client]
+    @ec2_client = attributes[:ec2_client]
   end
 
   def instances_without_reservations
@@ -8,15 +8,17 @@ class EC2Auditor
   end
 
   def parsed_instances
-    @parsed_instances ||= active_instances.reservations.each do |reservation|
-      reservation.instances.each do |instance|
-        @parsed_instances << AuditedEC2Instance.new(
-          type: instance.instance_type,
-          availability_zone: instance.placement.availability_zone,
-          reserved: false
-        )
+    unless @parsed_instances do
+      active_instances.reservations.each do |reservation|
+        reservation.instances.each do |instance|
+          @parsed_instances << AuditedEC2Instance.new(
+            type: instance.instance_type,
+            availability_zone: instance.placement.availability_zone,
+            platform: instance.platform,
+            reserved: false
+          )
+        end
       end
-    end
     return @parsed_instances
   end
 
@@ -30,7 +32,7 @@ class EC2Auditor
 end
 
 class AuditedEC2Instance
-  attr_accesor :type, :availability_zone, :reserved
+  attr_accesor :type, :availability_zone, :platform, :reserved
 
   def initialize(attributes= {})
     attributes.each do |name, value|
