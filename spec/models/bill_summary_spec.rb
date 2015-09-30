@@ -27,5 +27,28 @@ describe BillSummary do
       )
       expect(bill_summary.monthly_invoice_to_date).to eq(12245.29)
     end
+    it 'gracefully handles the case where a bill is not found' do
+      s3_client = instance_double('Aws::S3::Client', get_object: nil)
+
+      bill_summary = BillSummary.new(
+        s3_client: s3_client,
+        s3_billing_bucket: 'billing-bucket',
+        account_number: '12345'
+      )
+      expect(bill_summary.monthly_invoice_to_date).to eq(nil)
+    end
+    it 'gracefully handles the case where a bill is found, but there is no estimate' do
+      bill_file = 'foobar,boo\n1,2'
+      body = instance_double('StringIO', read: bill_file)
+      response = double(body: body)
+      s3_client = instance_double('Aws::S3::Client', get_object: response)
+
+      bill_summary = BillSummary.new(
+        s3_client: s3_client,
+        s3_billing_bucket: 'billing-bucket',
+        account_number: '12345'
+      )
+      expect(bill_summary.monthly_invoice_to_date).to eq(nil)
+    end
   end
 end
