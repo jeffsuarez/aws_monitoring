@@ -21,8 +21,6 @@ class BillSummary
     end
   end
 
-  private
-
   def current_parsed_bill
     @current_parsed_bill ||= parse_csv(bill_text(filename: bill_filename))
   end

@@ -7,7 +7,7 @@ class Session
 
   validates_length_of :aws_access_key_id, minimum: 16, maximum: 32
   validates_presence_of :aws_secret_key
-  validates_with EC2PermissionsValidator, client: :ec2_client
+  validates_with EC2PermissionsValidator
 
 
   def initialize(attributes = {})

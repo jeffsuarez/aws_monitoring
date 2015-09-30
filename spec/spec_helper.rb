@@ -6,6 +6,7 @@ require 'i18n'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -20,6 +21,8 @@ RSpec.configure do |config|
 
   end
 end
+
+WebMock.disable_net_connect!(allow_localhost: true)
 
 if AwsMonitor::Application.config.assets.compile
   asset_dir = File.join(Rails.public_path, AwsMonitor::Application.config.assets.prefix)

@@ -1,15 +1,31 @@
 require 'spec_helper'
 
-describe EC2Client do
-  describe 'can_describe_instances?' do
-    it 'calls describe_instances on the ec2 client' do
-      ec2_client = double
-      expect(ec2_client).to receive(:describe_instances).once
+describe BillSummary do
+  describe 'monthly_invoice_to_date' do
+    it 'calls AWS properly to retrieve the bill' do
+      s3_client = instance_double('Aws::S3::Client')
+      expected_filename = '12345-aws-billing-csv-2015-09.csv'
+      expect(s3_client).to receive(:get_object).with(bucket: 'billing-bucket', key: expected_filename)
 
-      allow_any_instance_of(EC2Client).to receive(:client).and_return(ec2_client)
-      client = EC2Client.new(aws_access_key_id: '123', aws_secret_key: '456', region: 'us-east-1')
+      bill_summary = BillSummary.new(
+        s3_client: s3_client,
+        s3_billing_bucket: 'billing-bucket',
+        account_number: '12345'
+      )
+      bill_summary.monthly_invoice_to_date
+    end
+    it 'returns the current estimate from the bill' do
+      bill_file = IO.read(Rails.root.join('spec', 'fixtures', 'bill-sample.csv'))
+      body = instance_double('StringIO', read: bill_file)
+      response = double(body: body)
+      s3_client = instance_double('Aws::S3::Client', get_object: response)
 
-      client.can_describe_instances?
+      bill_summary = BillSummary.new(
+        s3_client: s3_client,
+        s3_billing_bucket: 'billing-bucket',
+        account_number: '12345'
+      )
+      expect(bill_summary.monthly_invoice_to_date).to eq(12245.29)
     end
   end
 end

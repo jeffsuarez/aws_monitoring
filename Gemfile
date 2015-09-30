@@ -24,6 +24,7 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner', require: false
   gem 'shoulda-matchers'
+  gem 'webmock'
 end
 
 group :development, :test do
