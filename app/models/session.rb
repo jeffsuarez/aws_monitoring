@@ -56,7 +56,6 @@ class Session
     return false
   end
 
-
   def ec2_client
     @ec2_client ||= Aws::EC2::Client.new(config_params)
   end
